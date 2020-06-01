@@ -62,6 +62,9 @@ const userSchema = new Schema(
       transform: (doc, ret) => {
         ret.id = doc.id;
         ret.name = camelCase(doc.name);
+        ret.nickName = camelCase(doc.nickName);
+        ret.lastName1 = camelCase(doc.lastName1);
+        ret.lastName2 = camelCase(doc.lastName2);
         delete ret._id;
         delete ret.password;
         delete ret.__v;
