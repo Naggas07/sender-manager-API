@@ -14,6 +14,12 @@ require("./config/db.config");
 const session = require("./config/session.config");
 
 /**
+ * Configure routes
+ */
+
+const routes = require("./routes/main.routes");
+
+/**
  * Configure express
  */
 const app = express();
@@ -23,6 +29,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session);
+app.use("/", routes);
 
 app.use((req, res, next) => {
   req.currentUser = req.session.user;
