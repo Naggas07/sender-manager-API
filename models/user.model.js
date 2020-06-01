@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema();
+const Schema = mongoose.Schema;
 
 const bcrypt = require("bcrypt");
 const SALTFACTOR = process.env.SALTFACTOR || 10;
+const { camelCase } = require("../config/normalize/normalize");
 
-const EMAIL_PATTERN = process.env.EMAILPATERN;
+const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 const userSchema = new Schema(
   {
@@ -44,7 +45,7 @@ const userSchema = new Schema(
     userType: {
       type: String,
       required: true,
-      enum: ["User", "Business", "Admin"],
+      enum: ["User", "Manager", "Admin"],
     },
     department: {
       type: Number,
@@ -60,6 +61,7 @@ const userSchema = new Schema(
     toJSON: {
       transform: (doc, ret) => {
         ret.id = doc.id;
+        ret.name = camelCase(doc.name);
         delete ret._id;
         delete ret.password;
         delete ret.__v;
