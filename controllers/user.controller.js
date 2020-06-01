@@ -3,8 +3,6 @@ const bcrypt = require("bcrypt");
 const SALTFACTOR = process.env.SALTFACTOR || 10;
 
 module.exports.create = (req, res, next) => {
-  console.log(req.body);
-
   const {
     nickName,
     name,
@@ -58,7 +56,6 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.logout = (req, res) => {
-  console.log(req.session.user);
   req.session.destroy();
   res.status(200).json({ message: "session destroyed" });
 };
