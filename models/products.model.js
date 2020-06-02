@@ -40,6 +40,13 @@ const productSchema = new Schema(
   }
 );
 
+productSchema.virtual("subProducts", {
+  ref: "SubProduct",
+  localField: "_id",
+  foreignField: "product",
+  justOne: false,
+});
+
 const Product = mongoose.model("Product", productSchema);
 
 module.exports = Product;
