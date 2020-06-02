@@ -59,6 +59,7 @@ const userSchema = new Schema(
   {
     timestamps: true,
     toJSON: {
+      virtuals: true,
       transform: (doc, ret) => {
         ret.id = doc.id;
         ret.name = camelCase(doc.name);
