@@ -15,3 +15,31 @@ module.exports.create = (req, res, next) => {
     })
     .catch((err) => next(err));
 };
+
+module.exports.getAll = (_, res, next) => {
+  SubProduct.find()
+    .then((items) => {
+      res.status(200).json(items);
+    })
+    .catch((err) => next(err));
+};
+
+module.exports.getAllProduct = (req, res, next) => {
+  const { product } = req.params;
+
+  SubProduct.find({ product })
+    .then((items) => {
+      res.status(200).json(items);
+    })
+    .catch((err) => next(err));
+};
+
+module.exports.getState = (req, res, next) => {
+  const { state } = req.body;
+
+  SubProduct.find({ state })
+    .then((items) => {
+      res.status(200).json(items);
+    })
+    .catch((err) => next(err));
+};
