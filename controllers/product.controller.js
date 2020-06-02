@@ -24,6 +24,15 @@ module.exports.getAll = (_, res, next) => {
     .catch((err) => next(err));
 };
 
+module.exports.getAllInfo = (_, res, next) => {
+  Product.find({})
+    .populate("subProducts")
+    .then((products) => {
+      res.status(200).json(products);
+    })
+    .catch((err) => next(err));
+};
+
 module.exports.update = (req, res, next) => {
   const { id } = req.params;
   const { state } = req.body;

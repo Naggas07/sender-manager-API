@@ -9,7 +9,7 @@ module.exports.create = (req, res, next) => {
     description,
   };
 
-  SubProduct.save(subProduct)
+  SubProduct.create(subProduct)
     .then((item) => {
       res.status(201).json(item);
     })

@@ -17,7 +17,7 @@ const productSchema = new Schema(
     state: {
       type: String,
       enum: ["Activo", "Inactivo", "Pte aprobación", "Obsoleto"],
-      default: "Pte aprovación",
+      default: "Pte aprobación",
     },
     inactiveDate: {
       type: Date,
