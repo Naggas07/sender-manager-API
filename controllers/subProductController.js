@@ -8,4 +8,10 @@ module.exports.create = (req, res, next) => {
     product,
     description,
   };
+
+  SubProduct.save(subProduct)
+    .then((item) => {
+      res.status(201).json(item);
+    })
+    .catch((err) => next(err));
 };
