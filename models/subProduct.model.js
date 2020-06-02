@@ -18,6 +18,15 @@ const subProductSchema = new Schema(
       type: String,
       default: null,
     },
+    state: {
+      type: String,
+      enum: ["Activo", "Inactivo", "Pte aprobación", "Obsoleto"],
+      default: "Pte aprovación",
+    },
+    inactiveDate: {
+      type: Date,
+      default: null,
+    },
   },
   {
     timestamps: true,
