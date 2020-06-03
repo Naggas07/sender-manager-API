@@ -22,9 +22,22 @@ module.exports.getFilter = (req, res, next) => {
     req.body[key] ? (filter[key] = req.body[key]) : "ko";
   });
 
-  console.log(filter);
+  Provider.find(filter)
+    .then((providers) => {
+      res.status(200).json(providers);
+    })
+    .catch((err) => next(err));
+};
+
+module.exports.getFilterInfo = (req, res, next) => {
+  const filter = {};
+
+  Object.keys(req.body).map((key) => {
+    req.body[key] ? (filter[key] = req.body[key]) : "ko";
+  });
 
   Provider.find(filter)
+    .populate("contactProvider")
     .then((providers) => {
       res.status(200).json(providers);
     })

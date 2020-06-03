@@ -37,13 +37,19 @@ const ProviderSchema = new Schema(
         ret.id = doc.id;
         ret.name = camelCase(doc.name);
         delete ret._id;
-        delete ret.password;
         delete ret.__v;
         return ret;
       },
     },
   }
 );
+
+ProviderSchema.virtual("contactProvider", {
+  ref: "ContactProvider",
+  localField: "_id",
+  foreignField: "provider",
+  justOne: false,
+});
 
 const Provider = mongoose.model("Provider", ProviderSchema);
 
