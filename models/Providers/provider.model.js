@@ -10,16 +10,16 @@ const ProviderSchema = new Schema(
       uppercase: true,
       unique: true,
     },
+    description: {
+      type: String,
+      default: null,
+    },
     state: {
       type: String,
       enum: ["Activo", "Inactivo", "Pte aprobación", "Obsoleto"],
       default: "Pte aprobación",
     },
     inactiveDate: {
-      type: Date,
-      default: null,
-    },
-    contractEnd: {
       type: Date,
       default: null,
     },
