@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const { camelCase } = require("../../config/normalize/normalize");
 
-const senderProviderSchema = new Schema(
+const ProviderSchema = new Schema(
   {
     name: {
       type: String,
@@ -22,6 +22,11 @@ const senderProviderSchema = new Schema(
       type: Date,
       default: null,
     },
+    type: {
+      type: String,
+      enum: ["Envios", "Otros", null],
+      default: null,
+    },
   },
   {
     timestamps: true,
@@ -39,6 +44,6 @@ const senderProviderSchema = new Schema(
   }
 );
 
-const SenderProvider = mongoose.model("SenderProvider", senderProviderSchema);
+const Provider = mongoose.model("Provider", ProviderSchema);
 
-module.exports = SenderProvider;
+module.exports = Provider;
