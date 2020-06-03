@@ -43,3 +43,19 @@ module.exports.getState = (req, res, next) => {
     })
     .catch((err) => next(err));
 };
+
+module.exports.update = (req, res, next) => {
+  const { id } = req.params;
+  const { state } = req.body;
+
+  console.log(id);
+
+  const toUpadte = {
+    state,
+    inactiveDate: state === "Inactivo" ? new Date() : null,
+  };
+
+  SubProduct.findByIdAndUpdate(id, toUpadte, { new: true })
+    .then((product) => res.status(200).json(product))
+    .catch((err) => next(err));
+};
