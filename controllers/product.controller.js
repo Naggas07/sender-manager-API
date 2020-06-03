@@ -33,6 +33,17 @@ module.exports.getAllInfo = (_, res, next) => {
     .catch((err) => next(err));
 };
 
+module.exports.getProductInfo = (req, res, next) => {
+  const { id } = req.params;
+
+  Product.findById(id)
+    .populate("subProducts")
+    .then((item) => {
+      res.status(200).json(item);
+    })
+    .catch((err) => next(err));
+};
+
 module.exports.update = (req, res, next) => {
   const { id } = req.params;
   const { state } = req.body;
