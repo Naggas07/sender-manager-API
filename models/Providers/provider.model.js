@@ -44,8 +44,15 @@ const ProviderSchema = new Schema(
   }
 );
 
-ProviderSchema.virtual("contactProvider", {
+ProviderSchema.virtual("contacts", {
   ref: "ContactProvider",
+  localField: "_id",
+  foreignField: "provider",
+  justOne: false,
+});
+
+ProviderSchema.virtual("channels", {
+  ref: "ChannelProvider",
   localField: "_id",
   foreignField: "provider",
   justOne: false,

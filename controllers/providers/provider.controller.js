@@ -37,7 +37,8 @@ module.exports.getFilterInfo = (req, res, next) => {
   });
 
   Provider.find(filter)
-    .populate("contactProvider")
+    .populate("contacts")
+    .populate("channels")
     .then((providers) => {
       res.status(200).json(providers);
     })
