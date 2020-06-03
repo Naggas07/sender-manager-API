@@ -8,6 +8,7 @@ const ProviderSchema = new Schema(
       type: String,
       required: true,
       uppercase: true,
+      unique: true,
     },
     state: {
       type: String,
